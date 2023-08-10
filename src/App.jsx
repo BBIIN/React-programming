@@ -1,12 +1,11 @@
-import RootLayout from "./layout/RootLayouta";
-import About from "./pages/About";
+import RootLayout from "./layout/RootLayout";
+import Practice from "./pages/Practaice/Practice";
 
 function App() {
   return (
     <div className="App">
       <RootLayout>
-        {/* <Home /> */}
-        <About />
+        <Practice />
       </RootLayout>
     </div>
   );
