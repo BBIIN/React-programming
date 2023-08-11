@@ -1,11 +1,11 @@
 import RootLayout from "./layout/RootLayout";
-import Practice from "./pages/Practaice/Practice";
+import FilterableList from "./pages/Practaice/FilterableList";
 
 function App() {
   return (
     <div className="App">
       <RootLayout>
-        <Practice />
+        <FilterableList />
       </RootLayout>
     </div>
   );
