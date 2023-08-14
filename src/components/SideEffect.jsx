@@ -8,16 +8,19 @@ import * as React from 'react';
 // React.useRef
 
 function SideEffect() {
-
   // pure
   console.log(document.querySelector('.SideEffect'));
 
-  React.useEffect(() => {
-    // impure
-    console.log('effect callback')
-    const effectElement = document.querySelector('.SideEffect');
-    effectElement?.setAttribute('lang', 'en');
-  });
+  React.useEffect(
+    /* setup */
+    () => {
+      // impure
+      console.log('effect callback');
+      const effectElement = document.querySelector('.SideEffect');
+      effectElement?.setAttribute('lang', 'en');
+    }
+    /* dependencies? */
+  );
 
   /* 
     // Virtual DOM => Virtual Element Tree (React Element Tree)
@@ -48,13 +51,13 @@ function SideEffect() {
       }
     }
   */
-  
-  return (
-    React.createElement("div", { className: "SideEffect" },
-      React.createElement("h2", null, "Side Effect"),
-      React.createElement("p", null, "impure action")
-    )
-  )
+
+  return React.createElement(
+    'div',
+    { className: 'SideEffect' },
+    React.createElement('h2', null, 'Side Effect'),
+    React.createElement('p', null, 'impure action')
+  );
 
   // return (
   //   <div className="SideEffect">
