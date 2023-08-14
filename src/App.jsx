@@ -1,5 +1,5 @@
-import RootLayout from "./layout/RootLayout";
-import FilterableList from "./pages/Practaice/FilterableList";
+import RootLayout from './layout/RootLayout';
+import FilterableList from './pages/Practice/FilterableList';
 
 function App() {
   return (

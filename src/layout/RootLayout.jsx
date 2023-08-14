@@ -1,20 +1,14 @@
-/* eslint-disable react/prop-types */
-
-import HeaderBar from "./HeaderBar";
 import FooterBar from "./FooterBar";
+import HeaderBar from "./HeaderBar";
 
 function RootLayout(props) {
   return (
-    /*  <React.Fragment>
-      <HeaderBar key="header-bar" />
-      <main key="main">{props.children}</main>
-      <FooterBar key="footer-bar" />
-    </React.Fragment> */
-    <div>
-      <HeaderBar key="header-bar" />
-      <main key="main">{props.children}</main>
-      <FooterBar key="footer-bar" />
-    </div>
+    <>
+      {/* <div className="overlay"></div> */}
+      <HeaderBar />
+      <main>{props.children}</main>
+      <FooterBar />
+    </>
   );
 }
 
