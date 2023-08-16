@@ -1,64 +1,121 @@
 import { useState } from 'react';
 
 function LearnStateAndEffects() {
-  // 성(lastName), 이름(firstName)
-  const [lastName, setLastName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  // const [showYourName, setShowYourName] = useState(false);
+  // 숫자 값 상태 관리
 
-  // 성 + 이름(fullName) 출력
-  // 파생된 상태 (derived state)
-  const fullName = lastName + firstName;
-  // const fullNameLength = lastName.length + firstName.length;
-  const showYourName = lastName.length > 0 && firstName.length > 0;
+  // 마우스의 x 좌표
+  // const [mouseX, setMouseX] = useState(0);
+  // 마우스의 y 좌표
+  // const [mouseY, setMouseY] = useState(0);
+
+  // 개별 상태 관리 → 그룹(묶음) 상태 관리
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handlePrintMousePosition = ({ pageX: x, pageY: y }) => {
+    // setMouseX(e.clientX);
+    // setMouseY(e.clientY);
+    setMousePosition({ x, y });
+  };
+
+  // 객체 상태 관리
+  // { x: 10, y: 96 }
+  // 배열 상태 관리
+  // [10, 96]
+
+  const [repository, setRepository] = useState({
+    id: 'repo-101',
+    title: 'yamoo9/likelion-FEQA',
+    link: 'https://github.com/yamoo9/likelion-FEQA',
+    profile: {
+      url: 'https://avatars.githubusercontent.com/u/1850554?s=16&v=4',
+      label: 'yamoo9',
+    },
+  });
 
   return (
-    <div className="m-10 flex flex-col gap-2 items-start">
+    <div
+      className="m-10 flex flex-col gap-2 items-start"
+      onMouseMove={handlePrintMousePosition}
+    >
       <h2 className="text-indigo-600 text-2xl uppercase">
         상태 및 이펙트 학습하기
       </h2>
 
-      <h3 className="text-slate-700 text-lg">너의 이름은?</h3>
+      <output>
+        마우스 X 좌표 : {mousePosition.x} / 마우스 Y 좌표 : {mousePosition.y}
+      </output>
 
-      <div className="flex gap-1 items-center">
-        <input
-          type="text"
-          name="lastName"
-          aria-label="성"
-          placeholder="김"
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-          className="w-7 border-2 border-indigo-400 px-1 rounded-sm text-center"
-        />
-        <input
-          type="text"
-          name="firstName"
-          aria-label="이름"
-          placeholder="덕구"
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-          className="w-12 border-2 border-indigo-400 px-1 rounded-sm text-center"
-        />
-        <span className="text-base text-slate-600">({fullName.length})</span>
-      </div>
-
-      {showYourName && (
-        <>
-          <hr className="w-full my-2 border-1 border-dashed border-indigo-300" />
-          <img src="https://bit.ly/45blNdl" alt="" className="h-40" />
-          <p>
-            아! 당신의 이름은{' '}
-            <b className="underline underline-offset-4 text-indigo-500">
-              {fullName}
-            </b>
-            이군요!
-          </p>
-        </>
-      )}
+      <h2 className="text-2xl mt-10 font-semibold">저장소 정보 수정</h2>
+      <form className="w-1/2">
+        <div className="flex items-center gap-2 w-full">
+          <label htmlFor="repoTitle" className="font-medium">
+            타이틀 (title)
+          </label>
+          <input
+            type="text"
+            name="repoTitle"
+            id="repoTitle"
+            value={repository.title}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                title: e.target.value,
+              });
+            }}
+            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
+            placeholder="yamoo9/repository"
+          />
+        </div>
+        <div className="flex items-center gap-2 w-full">
+          <label htmlFor="repoLink" className="font-medium">
+            링크 (href)
+          </label>
+          <input
+            type="text"
+            name="repoLink"
+            id="repoLink"
+            value={repository.link}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                link: e.target.value,
+              });
+            }}
+            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
+            placeholder="https://my-web-service.dev"
+          />
+        </div>
+        <div className="flex items-center gap-2 w-full">
+          <label htmlFor="repoProfileLabel" className="font-medium">
+            프로필 레이블 (profile.label)
+          </label>
+          <input
+            type="text"
+            name="repoProfileLabel"
+            id="repoProfileLabel"
+            value={repository.profile.label}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                profile: {
+                  ...repository.profile,
+                  label: e.target.value,
+                },
+              });
+            }}
+            className="flex-1 p-1 border-b-2 border-slate-400 bg-transparent placeholder:text-slate-400"
+            placeholder="yamoo9"
+          />
+        </div>
+        <div role="group" className="flex gap-1 mt-5">
+          <button type="submit" className="py-1.5 px-2.5 bg-sky-500 text-white">
+            저장
+          </button>
+          <button type="reset" className="py-1.5 px-2.5 bg-rose-500 text-white">
+            취소
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
