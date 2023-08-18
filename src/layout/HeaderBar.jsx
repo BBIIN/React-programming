@@ -1,9 +1,8 @@
-import styles from '@/styles/HeaderBar.module.css';
 import Heading from '@/components/Heading';
 
 function HeaderBar() {
   return (
-    <header className={`${styles.container} bg-indigo-950`}>
+    <header className="p-5 bg-indigo-950 text-indigo-50">
       <Heading />
     </header>
   );

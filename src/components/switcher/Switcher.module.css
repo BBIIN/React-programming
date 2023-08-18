@@ -17,7 +17,7 @@
   inline-size: calc(var(--size) * 3);
 
   background: var(--body);
-  border: 0.1px solid #999b;
+  border: .1px solid #999b;
   padding: 2px;
   border-radius: 9999px;
   text-transform: uppercase;

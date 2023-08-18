@@ -14,7 +14,6 @@ import { useState } from 'react';
   }
 
   // console.log('컴포넌트 렌더링 myName =', myName);
-
   // 상태 관리는 페이지 컴포넌트에서 진행
   // React.useState() 훅으로 선언된 상태로 제어
   // on / off 상태 변수 (관리할 데이터 타입은 Boolean)
@@ -88,7 +87,11 @@ function DemoPage() {
         label="리듀스 모션"
         onClick={handleToggleReducedMotion}
       />
-      <Switcher on={isReady} label="아 U 레디?" onClick={handleToggleReady} />
+      <Switcher
+        on={isReady}
+        label="아 U 레디?"
+        onClick={handleToggleReady}
+      />
     </div>
   );
 }
