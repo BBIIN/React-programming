@@ -1,5 +1,5 @@
 import Spinner from '@/components/Spinner';
-import useFetchData from '@/utils/useFetchData';
+import useFetchData from '@/hooks/useFetchData';
 import ProductItem from './ProductItem';
 
 const PRODUCTS_ENDPOINT = `http://127.0.0.1:8090/api/collections/products/records`;
