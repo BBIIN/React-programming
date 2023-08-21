@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 // 사용자 정의 훅을 작성
 export default function useFetchData(endpoint) {
   // 훅의 규칙 (컴포넌트 또는 다른 훅 내부에서만 사용 가능)
-  // custom hook 내부에서 built-in hook 사용가능
-  const [data, setData] = useState([]);
+  // custom hook 내부에서 built-in hook 사용 가능
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null);
 

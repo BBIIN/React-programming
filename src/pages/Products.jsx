@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import Spinner from '@/components/Spinner';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
-import useFetchData from '@/hooks/useFetchData';
+import useProductList from '@/hooks/useProductList';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { getSlug } from '@/utils/getSlug';
-import useProductList from '@/hooks/useProductList';
+import { Link } from 'react-router-dom';
 
 // PB → READ / CREATE / UPDATE / DELETE
 //
