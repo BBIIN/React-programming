@@ -1,11 +1,15 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import RootLayout from './layout/RootLayout';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
 
 // 구버전 처럼 사용할 사용자를 위한 최신 방법
-// 배열 → JSX 
+// 배열 → JSX
 const router = createBrowserRouter(
   // 유틸리티 함수
   createRoutesFromElements(
@@ -15,12 +19,12 @@ const router = createBrowserRouter(
       <Route path="contact" element={<Contact />} />
     </Route>
   )
-)
+);
 
 export default router;
 
 // 최신 방법(기본 방법)
-// 배열 → 객체 
+// 배열 → 객체
 // const router = createBrowserRouter([
 //   {
 //     path: '/',
