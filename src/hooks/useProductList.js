@@ -1,7 +1,7 @@
 //# PocketBase SDK 활용편
 
 import { useState } from 'react';
-import pb from './pocketbase';
+import pb from './PocketBase';
 
 //# SDK 처리 함수를 포함한 사용자 정의 훅 작성
 export function useProductList() {

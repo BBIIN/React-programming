@@ -29,6 +29,10 @@ function ProductEdit() {
   const deleteProduct = useDeleteProduct();
   const updateProduct = useUpdateProduct();
 
+  // useEffect(() => {
+  //   console.log(formState);
+  // }, [formState])
+
   useEffect(() => {
     if (!isLoading && data) {
       setFormState({
@@ -79,6 +83,10 @@ function ProductEdit() {
   }
 
   if (data) {
+    console.log(formState.title);
+    console.log(formState.color);
+    console.log(formState.price);
+
     return (
       <>
         <h2 className="text-2xl text-center">
@@ -87,7 +95,7 @@ function ProductEdit() {
         <form onSubmit={handleEditProduct}>
           {/* title */}
           <div>
-            <label htmlFor={titleId}>title </label>
+            <label htmlFor={titleId}>타이틀</label>
             <input
               type="text"
               name="title"
@@ -98,7 +106,7 @@ function ProductEdit() {
           </div>
           {/* color */}
           <div>
-            <label htmlFor={colorId}>color </label>
+            <label htmlFor={colorId}>컬러</label>
             <input
               type="text"
               name="color"
@@ -109,13 +117,14 @@ function ProductEdit() {
           </div>
           {/* price */}
           <div>
-            <label htmlFor={priceId}>price </label>
+            <label htmlFor={priceId}>프라이스</label>
             <input
               type="number"
               name="price"
               id={priceId}
-              defaultValue={formState.price}
-              onChange={handleDebounceChangeInput}
+              // defaultValue={formState.price}
+              value={formState.price}
+              onChange={handleChangeInput}
             />
           </div>
           <div>
