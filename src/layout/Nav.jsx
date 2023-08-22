@@ -7,9 +7,7 @@ function Nav() {
         <li>
           <NavLink
             to="/signin"
-            className={({ isActive }) =>
-              isActive ? 'font-semibold text-rose-600' : ''
-            }
+            className={({ isActive }) => isActive ? 'font-semibold text-rose-600' : ''}
           >
             Sign In
           </NavLink>

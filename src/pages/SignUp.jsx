@@ -17,7 +17,7 @@ function SignUp() {
     e.preventDefault();
 
     const { password, passwordConfirm } = formState;
-
+    
     if (password !== passwordConfirm) {
       alert('비밀번호가 일치하지 않습니다. 다시 확인해보세요.');
       return;
@@ -36,7 +36,7 @@ function SignUp() {
     const { name, value } = e.target;
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -44,10 +44,7 @@ function SignUp() {
     <div>
       <h2>회원가입</h2>
 
-      <form
-        onSubmit={handleRegister}
-        className="flex flex-col gap-2 mt-2 justify-start items-start"
-      >
+      <form onSubmit={handleRegister} className='flex flex-col gap-2 mt-2 justify-start items-start'>
         <div>
           <label htmlFor="name">사용자 이름</label>
           <input
@@ -56,7 +53,7 @@ function SignUp() {
             id="name"
             value={formState.name}
             onChange={handleInput}
-            className="border border-slate-300 ml-2"
+            className='border border-slate-300 ml-2'
           />
         </div>
         <div>
@@ -67,7 +64,7 @@ function SignUp() {
             id="username"
             value={formState.username}
             onChange={handleInput}
-            className="border border-slate-300 ml-2"
+            className='border border-slate-300 ml-2'
           />
         </div>
         <div>
@@ -78,7 +75,7 @@ function SignUp() {
             id="email"
             value={formState.email}
             onChange={handleInput}
-            className="border border-slate-300 ml-2"
+            className='border border-slate-300 ml-2'
           />
         </div>
         <div>
@@ -89,7 +86,7 @@ function SignUp() {
             id="password"
             value={formState.password}
             onChange={handleInput}
-            className="border border-slate-300 ml-2"
+            className='border border-slate-300 ml-2'
           />
         </div>
         <div>
@@ -100,13 +97,11 @@ function SignUp() {
             id="passwordConfirm"
             value={formState.passwordConfirm}
             onChange={handleInput}
-            className="border border-slate-300 ml-2"
+            className='border border-slate-300 ml-2'
           />
         </div>
-        <div className="flex gap-2">
-          <button type="submit" className="disabled:cursor-not-allowed">
-            가입
-          </button>
+        <div className='flex gap-2'>
+          <button type="submit" className='disabled:cursor-not-allowed'>가입</button>
           <button type="reset">취소</button>
         </div>
       </form>
