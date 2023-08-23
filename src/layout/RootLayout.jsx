@@ -21,6 +21,20 @@ function RootLayout({ displaySideMenu = false }) {
               <li>
                 <Link to="/learn/03">속성(props) 드릴링 이슈</Link>
               </li>
+              <li>
+                <Link to="/learn/04/01">
+                  상태 공유 Context{' '}
+                  <abbr
+                    title="Application Programming Interface"
+                    className="cursor-help no-underline"
+                  >
+                    API
+                  </abbr>
+                </Link>
+              </li>
+              <li>
+                <Link to="/learn/04/02">Context 분리 관리</Link>
+              </li>
             </ul>
           </nav>
         )}
