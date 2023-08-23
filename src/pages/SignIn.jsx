@@ -47,7 +47,7 @@ function SignIn() {
             type="email"
             name="email"
             id="email"
-            value={formState.email}
+            defaultValue={formState.email}
             onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
@@ -58,7 +58,7 @@ function SignIn() {
             type="password"
             name="password"
             id="password"
-            value={formState.password}
+            defaultValue={formState.password}
             onChange={handleInput}
             className="border border-slate-300 ml-2"
           />
