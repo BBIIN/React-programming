@@ -50,12 +50,7 @@ function ProductEdit() {
     });
   };
 
-  const handleDebounceChangeInput = debounce(({ target }) => {
-    setFormState({
-      ...formState,
-      [target.name]: target.value,
-    });
-  }, 500);
+  const handleDebounceChangeInput = debounce(handleChangeInput, 500);
 
   const handleEditProduct = (e) => {
     e.preventDefault();
@@ -95,7 +90,7 @@ function ProductEdit() {
         <form onSubmit={handleEditProduct}>
           {/* title */}
           <div>
-            <label htmlFor={titleId}>타이틀</label>
+            <label htmlFor={titleId}>title </label>
             <input
               type="text"
               name="title"
@@ -106,7 +101,7 @@ function ProductEdit() {
           </div>
           {/* color */}
           <div>
-            <label htmlFor={colorId}>컬러</label>
+            <label htmlFor={colorId}>color </label>
             <input
               type="text"
               name="color"
@@ -117,11 +112,12 @@ function ProductEdit() {
           </div>
           {/* price */}
           <div>
-            <label htmlFor={priceId}>프라이스</label>
+            <label htmlFor={priceId}>price </label>
             <input
               type="number"
               name="price"
               id={priceId}
+              step={100}
               // defaultValue={formState.price}
               value={formState.price}
               onChange={handleChangeInput}
