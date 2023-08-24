@@ -10,8 +10,7 @@
 /* ---------------------------------------------------------------- */
 
 import pb from '@/api/pocketbase';
-import { useEffect } from 'react';
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect, useContext } from 'react';
 
 const AuthContext = createContext();
 const initialAuthState = {
@@ -54,7 +53,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
   const signOut = async () => {
     return await pb.collection('users').clear();
   };
-  const secession = async (id) => {
+  const cancelMembership = async (id) => {
     return await pb.collection('users').delete(id);
   };
 
@@ -64,7 +63,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
     signUp,
     signIn,
     signOut,
-    secession,
+    cancelMembership,
   };
 
   return (
@@ -74,4 +73,33 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
   );
 }
 
+const PropTypes = {
+  string(props, propName, componentName) {
+    const propValue = props[propName];
+    const propType = typeof propValue;
+
+    if (propType !== 'string' && propType !== 'undefined') {
+      throw new Error(`
+        ${componentName} 컴포넌트 ${propName} 속성(prop) 타입의 기댓값은 string 또는 undefined 입니다.
+        하지만 전달된 ${propName} 속성 타입은 ${propType.toString()} 입니다.
+      `);
+    }
+  },
+};
+
+AuthProvider.propTypes = {
+  // manual prop validation
+  displayName: PropTypes.string,
+};
+
 export default AuthProvider;
+
+// 커스텀 훅
+// 인증 정보를 앱 어디서나 손쉽게 주입 받아 쓸 수 있도록 하는 함수
+export const useAuth = () => {
+  const authValue = useContext(AuthContext);
+  if (!authValue) {
+    throw new Error('useAuth 혹은 AuthProvider 내부에서만 사용할 수 있습니다');
+  }
+  return authValue;
+};

@@ -6,7 +6,7 @@ import router from './routes';
 function App() {
   return (
     <ThemeProvider>
-      <AuthProvider>
+      <AuthProvider displayName={1010}>
         <div className="App">
           <RouterProvider router={router} />
         </div>
