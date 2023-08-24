@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
+import { bool } from 'prop-types';
 import FooterBar from './FooterBar';
 import HeaderBar from './HeaderBar';
-import { Link } from 'react-router-dom';
 
 function RootLayout({ displaySideMenu = false }) {
   return (
@@ -9,7 +9,7 @@ function RootLayout({ displaySideMenu = false }) {
       <HeaderBar />
       <main className="flex gap-4 p-5">
         {displaySideMenu && (
-          <nav className="bg-slate-100 py-3 p-4 min-w-[100px]">
+          <nav className="bg-slate-100 py-3 px-4 min-w-[100px]">
             <h3 className="sr-only">학습 내비게이션 메뉴</h3>
             <ul>
               <li>
@@ -61,5 +61,9 @@ function RootLayout({ displaySideMenu = false }) {
     </>
   );
 }
+
+RootLayout.propTypes = {
+  displaySideMenu: bool,
+};
 
 export default RootLayout;

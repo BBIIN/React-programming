@@ -1,21 +1,36 @@
-import { getPbImageURL, numberWithComma } from '@/utils';
+import styles from './Switcher.module.css';
+import { bool, string, oneOf } from 'prop-types';
 
-export default function ProductItem({ item }) {
+function Switcher({
+  on = false,
+  onText = '',
+  offText = '',
+  label = '',
+  size = 'sm', // sm, md, lg
+  ...restProps
+}) {
   return (
-    <li>
-      <figure className="flex flex-col items-start">
-        <img
-          src={getPbImageURL(item, 'photo')}
-          className="h-96 w-auto"
-          alt=""
-        />
-        <figcaption className="flex flex-col">
-          <span className="title">
-            {item.title} [ {item.color} ]
-          </span>
-          <span className="price">KRW {numberWithComma(item.price)}</span>
-        </figcaption>
-      </figure>
-    </li>
+    <div className={styles.SwitcherWrapper}>
+      <button
+        type="button"
+        className={`${styles.Switcher} ${styles[size]} ${
+          on ? styles.on : ''
+        }`.trim()}
+        {...restProps}
+      >
+        <span className={styles.handle}>{on ? onText : offText}</span>
+      </button>
+      <span className={styles.label}>{label}</span>
+    </div>
   );
 }
+
+Switcher.propTypes = {
+  on: bool,
+  onText: string,
+  offText: string,
+  label: string,
+  size: oneOf(['sm', 'md', 'lg']),
+};
+
+export default Switcher;

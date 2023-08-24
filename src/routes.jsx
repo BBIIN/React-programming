@@ -3,23 +3,24 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import ProtectRoute from './components/ProtectRoute';
 import RootLayout from './layout/RootLayout';
-import Home from './pages/Home';
-import Products from './pages/Products';
-import ProductEdit from './pages/ProductEdit';
-import Contact from './pages/Contact';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import PassingProps from './learn/1-passing-props';
-import LiftingStateUp from './learn/2-lifting-state-up.jsx';
-import PropsDrillingIssue from './learn/3-props-drilling-issue.jsx';
+import LiftingStateUp from './learn/2-lifting-state-up';
+import PropsDrillingIssue from './learn/3-props-drilling-issue';
 import ReactContextAPI1 from './learn/4-1-react-context-api';
 import ReactContextAPI2 from './learn/4-2-seperation-react-context';
-import RefExampleMemoValues from './learn/5-ref-mema-values';
+import RefExampleMemoValues from './learn/5-ref-memo-values';
 import RefExampleReferencingDOM from './learn/6-ref-referencing-dom';
-import GSAP_Animation from './learn/7-ref-3-gsap-animation';
-import GSAP_Context from './learn/7-2-ref-gsap-context.jsx';
-import FramerMotion_Animation from './learn/8-framer-motion-declaration-animation';
+import GSAP_Animation from './learn/7-1-ref-gsap-animation';
+import GSAP_Context from './learn/7-2-ref-gsap-context';
+import FramerMotion_Animation from './learn/8-framer-motion';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import ProductEdit from './pages/ProductEdit';
+import Products from './pages/Products';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +29,17 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="products" element={<Products />} />
-      <Route path="product/edit/:productId" element={<ProductEdit />} />
+      <Route
+        path="product/edit/:productId"
+        element={
+          <ProtectRoute>
+            <ProductEdit />
+          </ProtectRoute>
+        }
+      />
       <Route path="contact" element={<Contact />} />
-      {/* 학습주제 */}
+
+      {/* 학습 주제 */}
       <Route path="learn/01" element={<PassingProps />} />
       <Route path="learn/02" element={<LiftingStateUp />} />
       <Route path="learn/03" element={<PropsDrillingIssue />} />

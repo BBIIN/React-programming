@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import pb from '@/api/pocketbase';
+import debounce from '@/utils/debounce';
+import { useAuth } from '@/contexts/Auth';
 
 function SignIn() {
   const navigate = useNavigate();
+  const { isAuth } = useAuth();
 
   const [formState, setFormState] = useState({
     email: '',
@@ -15,23 +18,18 @@ function SignIn() {
 
     const { email, password } = formState;
 
-    // PocketBase SDK 인증(로그인) 요청
-    const authData = await pb
-      .collection('users')
-      .authWithPassword(email, password);
-
-    console.log(authData);
+    await pb.collection('users').authWithPassword(email, password);
 
     navigate('/');
   };
 
-  const handleInput = (e) => {
+  const handleInput = debounce((e) => {
     const { name, value } = e.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-  };
+  }, 400);
 
   return (
     <div>
@@ -72,26 +70,28 @@ function SignIn() {
       </form>
 
       <Link to="/signup">회원가입</Link>
-      <button
-        type="button"
-        className="ml-4"
-        onClick={async () => {
-          if (confirm('정말 탈퇴하실 건가요??')) {
-            if (pb.authStore.model) {
-              try {
-                await pb.collection('users').delete(pb.authStore.model.id);
-                console.log('탈퇴 성공');
-              } catch (error) {
-                console.error(error);
+      {isAuth && (
+        <button
+          type="button"
+          className="ml-4"
+          onClick={async () => {
+            if (confirm('뭐가 맘에 안드시죠? 정말 탈퇴할 생각인가요?')) {
+              if (pb.authStore.model) {
+                try {
+                  await pb.collection('users').delete(pb.authStore.model.id);
+                  console.log('탈퇴 성공');
+                } catch (error) {
+                  console.error(error);
+                }
+              } else {
+                console.log('현재 로그인 된 사용자가 없어요.');
               }
-            } else {
-              console.log('현재 로그인 된 사용자가 없습니다.');
             }
-          }
-        }}
-      >
-        탈퇴
-      </button>
+          }}
+        >
+          탈퇴
+        </button>
+      )}
     </div>
   );
 }
