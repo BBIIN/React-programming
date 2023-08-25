@@ -54,6 +54,7 @@ function useStorage(key) {
 
   const remove = useCallback(() => {
     deleteData(key);
+    setStorageData();
   }, [key]);
 
   // const removeMemo = useMemo(
@@ -61,11 +62,14 @@ function useStorage(key) {
   //   [key]
   // );
 
-  return {
-    storageData,
-    update,
-    remove,
-  };
+  return useMemo(
+    () => ({
+      storageData,
+      update,
+      remove,
+    }),
+    [remove, storageData, update]
+  );
 }
 
 export default useStorage;
