@@ -23,6 +23,7 @@ import Products from './pages/Products';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import LocalStorage from './learn/10-local-storage';
+import ProductNew from './pages/ProductNew';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,6 +32,14 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="products" element={<Products />} />
+      <Route
+        path="product/new"
+        element={
+          <ProtectRoute>
+            <ProductNew />
+          </ProtectRoute>
+        }
+      />
       <Route
         path="product/edit/:productId"
         element={

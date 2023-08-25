@@ -18,6 +18,18 @@ function Nav() {
             Sign In
           </NavLink>
         </li>
+        {isAuth && (
+          <li>
+            <NavLink
+              to="/product/new"
+              className={({ isActive }) =>
+                isActive ? 'font-semibold text-rose-600' : ''
+              }
+            >
+              NEW
+            </NavLink>
+          </li>
+        )}
         <li>
           <NavLink
             to="/products"
