@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { string, number, bool, arrayOf, shape } from 'prop-types';
 
 function ComponentPropTypes() {
-  const [screencast, setScreencast] = useState({
+  const [screencast] = useState({
     id: 'castetdfh',
     title: '화면공유',
     tags: [
