@@ -15,16 +15,18 @@ import RefExampleReferencingDOM from './learn/6-ref-referencing-dom';
 import GSAP_Animation from './learn/7-1-ref-gsap-animation';
 import GSAP_Context from './learn/7-2-ref-gsap-context';
 import FramerMotion_Animation from './learn/8-framer-motion';
+import ComponentPropTypes from './learn/9-component-prop-types';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import ProductEdit from './pages/ProductEdit';
 import Products from './pages/Products';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import LocalStorage from './learn/10-local-storage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout displaySideMenu={false} />}>
+    <Route path="/" element={<RootLayout displaySideMenu={true} />}>
       <Route index element={<Home />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
@@ -50,6 +52,8 @@ const router = createBrowserRouter(
       <Route path="learn/07/01" element={<GSAP_Animation />} />
       <Route path="learn/07/02" element={<GSAP_Context />} />
       <Route path="learn/08" element={<FramerMotion_Animation />} />
+      <Route path="learn/09" element={<ComponentPropTypes />} />
+      <Route path="learn/10" element={<LocalStorage />} />
     </Route>
   )
 );
