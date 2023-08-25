@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import pb from '@/api/pocketbase';
 import debounce from '@/utils/debounce';
 import { useAuth } from '@/contexts/Auth';
 
 function SignIn() {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const { isAuth } = useAuth();
 
@@ -18,9 +19,17 @@ function SignIn() {
 
     const { email, password } = formState;
 
-    await pb.collection('users').authWithPassword(email, password);
+    try {
+      await pb.collection('users').authWithPassword(email, password);
 
-    navigate('/');
+      if (!state) {
+        navigate('/');
+      } else {
+        navigate(state.wishLocationPath);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleInput = debounce((e) => {
@@ -75,7 +84,7 @@ function SignIn() {
           type="button"
           className="ml-4"
           onClick={async () => {
-            if (confirm('뭐가 맘에 안드시죠? 정말 탈퇴할 생각인가요?')) {
+            if (confirm('정말 탈퇴하실 건가요??')) {
               if (pb.authStore.model) {
                 try {
                   await pb.collection('users').delete(pb.authStore.model.id);
