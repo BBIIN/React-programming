@@ -26,6 +26,10 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ReactContextIssue from './learn/11-context-problem';
 import ZustandLibrary from './learn/12-zustand-library';
+import InfineteQuery from './learn/16-infinite-query';
+import PaginationQuery from './learn/15-pagination-query';
+import DataFetchAndUX from './learn/13-data-fetch-and-ux';
+import TanStackQueryLibrary from './learn/14-tanstack-query';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -67,6 +71,10 @@ const router = createBrowserRouter(
       <Route path="learn/10" element={<LocalStorage />} />
       <Route path="learn/11" element={<ReactContextIssue />} />
       <Route path="learn/12" element={<ZustandLibrary />} />
+      <Route path="learn/13" element={<DataFetchAndUX />} />
+      <Route path="learn/14" element={<TanStackQueryLibrary />} />
+      <Route path="learn/15" element={<PaginationQuery />} />
+      <Route path="learn/16" element={<InfineteQuery />} />
     </Route>
   )
 );

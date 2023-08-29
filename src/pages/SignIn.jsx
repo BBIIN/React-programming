@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 function SignIn() {
-  const { state } = useLocation();
+  const { state } = useLocation(); // location { pathname, search, hash, state = { } }
   const navigate = useNavigate();
   const { isAuth } = useAuth();
 
@@ -27,7 +27,11 @@ function SignIn() {
       if (!state) {
         navigate('/');
       } else {
-        navigate(state.wishLocationPath);
+        // 사용자가 원하는 경로로 접속 요청
+        // 로그인 유무 확인이 안되서 사용자를 로그인 페이지로 이동
+        // 로그인 페이지에서 사용자가 로그인 시도(성공)
+        // 성공 (로그인 이력을 남기지 않도록 함)
+        navigate(state.wishLocationPath, { replace: true });
       }
     } catch (error) {
       console.error(error);

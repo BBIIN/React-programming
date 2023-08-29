@@ -1,12 +1,53 @@
+import { useCatsStore } from '@/store/cats';
+import { useCountStore } from '@/store/count';
 import { Helmet } from 'react-helmet-async';
+import { IncrementStencilOp } from 'three';
 
 function ZustandLibrary() {
+  // const cats = useCatsStore(
+  //   // 선택하는 함수(셀렉터 : selector)
+  //   (state) => state.cats
+  // );
+
+  // const addCat = useCatsStore((state) => state.addCat);
+
+  // console.log(cats);
+  // console.log(addCat);
+
+  const { increment, decrement, reset } = useCountStore((state) => {
+    const { count, ...restActions } = state;
+    console.log(count);
+    return restActions;
+  });
+
   return (
     <>
       <Helmet>
         <title>Zustand Library - Learn</title>
       </Helmet>
       <h2 className="headline text-sky-500">Zustand 라이브러리 활용</h2>
+
+      <div className="flex gap-6">
+        <button onClick={() => increment(10)}>+</button>
+        <button onClick={() => decrement(6)}>-</button>
+        <button onClick={reset}>reset</button>
+      </div>
+      {/* <button
+        type="button"
+        onClick={() =>
+          addCat({
+            name: '히로',
+            age: 2,
+            gender: 'male',
+          })
+        }
+      >
+        냥이 추가
+      </button> 
+      </button>
+      <button type="button" onClick={() => removeCat('더미')}>
+        냥이 졸업
+      </button>*/}
 
       <details>
         <summary>Zustand 발음 어떻게 해야할까요?</summary>
@@ -72,6 +113,13 @@ function ZustandLibrary() {
           </li>
         </ul>
       </details>
+      <input
+        type="text"
+        aria-label="학습 주제 추가"
+        placeholder="예) Zustand 발음 10번 하기"
+        className="py-1 border border-b-slate-400 mr-2"
+      />
+      <button type="button">추가</button>
     </>
   );
 }

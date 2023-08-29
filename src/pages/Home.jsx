@@ -1,14 +1,24 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
+import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 
 function Home() {
-  useDocumentTitle('홈');
-
   return (
-    <div className="grid place-content-center bg-coverImg bg-center bg-cover min-h-[calc(100vh_-_200px)]">
-      <h2 className="text-white tracking-widest font-extralight text-4xl uppercase">
-        Shop<span className="text-[60px] text-yellow-400">.</span>
-      </h2>
-    </div>
+    <>
+      <Helmet>
+        <title>Home - ReactBird</title>
+      </Helmet>
+      <div className="grid place-content-center bg-coverImg bg-center bg-cover min-h-[100%]">
+        <motion.h2
+          drag
+          dragConstraints={{ top: -2, right: 2, bottom: 2, left: -2 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.94, opacity: 0.8 }}
+          className="text-white tracking-widest font-extralight text-4xl uppercase"
+        >
+          Shop<span className="text-[60px] text-yellow-400">.</span>
+        </motion.h2>
+      </div>
+    </>
   );
 }
 
