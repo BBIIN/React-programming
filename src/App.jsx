@@ -4,6 +4,9 @@ import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import { HelmetProvider } from 'react-helmet-async';
+import { QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (

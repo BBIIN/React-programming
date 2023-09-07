@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { useState } from 'react';
 
-function FooterBar() {
+const FooterBar = memo(function FooterBar() {
   //  현재 년도를 화면에 출력하는 상태 설정
   const [currentyear] = useState(() => new Date().getFullYear());
 
@@ -12,6 +13,6 @@ function FooterBar() {
       </small>
     </footer>
   );
-}
+})
 
 export default FooterBar;
